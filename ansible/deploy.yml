@@ -1,0 +1,5 @@
+- name: Deploy Flask eCommerce to AKS
+  hosts: all
+  tasks:
+    - name: Apply Helm chart
+      command: helm upgrade --install flask-ecommerce helm_chart/
