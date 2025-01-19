@@ -1,6 +1,8 @@
 provider "azurerm" {
+  subscription_id = "0a1030be-cebb-4bfa-a87d-adf07e07e38c"
   features {}
 }
+
 
 resource "azurerm_resource_group" "rg" {
   name     = "flask-ecommerce-rg"

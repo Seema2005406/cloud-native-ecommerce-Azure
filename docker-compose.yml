@@ -1,4 +1,4 @@
-```yaml
+### File: docker-compose.yml
 version: '3.8'
 
 services:
@@ -11,7 +11,7 @@ services:
     environment:
       - FLASK_ENV=development
 
-  db:
+db:
     image: postgres:13
     environment:
       POSTGRES_USER: user
@@ -19,4 +19,6 @@ services:
       POSTGRES_DB: ecommerce
     ports:
       - "5432:5432"
-```
+
+ - "5432:5432"
+
