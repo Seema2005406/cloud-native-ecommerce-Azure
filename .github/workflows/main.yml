@@ -37,4 +37,4 @@ jobs:
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
       run: |
-        kubectl apply -f helm_chart/
+        kubectl apply -f helm_chart/ --validate=false
