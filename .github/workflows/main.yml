@@ -34,18 +34,18 @@ jobs:
         docker push ${{ secrets.ACR_LOGIN_SERVER }}/flask-ecommerce:latest
 
     - name: Validate Kubernetes Cluster Access
-   run: |
-     kubectl cluster-info
-
-
-- name: Install Helm
       run: |
+        kubectl cluster-info
+
+
+    - name: Install Helm
+       run: |
         curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
     - name: Deploy to Azure Kubernetes Service
-      env:
+       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      run: |
-        helm upgrade --install flask-ecommerce helm_chart \
+       run: |
+         helm upgrade --install flask-ecommerce helm_chart \
           --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/flask-ecommerce \
           --set image.tag=latest
