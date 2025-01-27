@@ -37,4 +37,6 @@ jobs:
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
       run: |
-        kubectl apply -f helm_chart/ --validate=false
+        helm upgrade --install flask-ecommerce helm_chart \
+          --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/flask-ecommerce \
+          --set image.tag=latest
