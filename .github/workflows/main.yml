@@ -29,7 +29,7 @@ jobs:
     # Build Docker image for the Flask app
     - name: Build Docker image
       run: |
-        docker build -t flask-ecommerce docker/
+        docker build -t flask-ecommerce .
 
     # Log in to Azure Container Registry (ACR)
     - name: Log in to ACR
