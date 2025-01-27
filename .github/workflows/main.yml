@@ -33,6 +33,10 @@ jobs:
         docker tag flask-ecommerce ${{ secrets.ACR_LOGIN_SERVER }}/flask-ecommerce:latest
         docker push ${{ secrets.ACR_LOGIN_SERVER }}/flask-ecommerce:latest
 
+    - name: Install Helm
+      run: |
+        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
     - name: Deploy to Azure Kubernetes Service
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
