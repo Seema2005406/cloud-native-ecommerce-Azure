@@ -45,6 +45,14 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         debug: true  # Enable debug mode for more verbose output
 
-    - name: Deploy to AKS
+    - name: Set up Kubernetes context
+      run: |
+        az aks get-credentials --resource-group ${{ secrets.AKS_RESOURCE_GROUP }} --name ${{ secrets.AKS_CLUSTER_NAME }}
+
+    - name: Verify Kubernetes connection
+      run: |
+        kubectl get nodes
+
+    - name: Deploy to AKS with Helm
       run: |
         helm upgrade --install flask-ecommerce helm_chart/
