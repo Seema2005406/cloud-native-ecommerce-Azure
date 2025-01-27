@@ -47,8 +47,7 @@ jobs:
 
     - name: Set up Kubernetes context
       run: |
-        az aks get-credentials --resource-group ${{ secrets.AKS_RESOURCE_GROUP }} --name ${{ secrets.AKS_CLUSTER_NAME }}
-
+        az aks get-credentials --resource-group flask-ecommerce-rg --name flask-ecommerce-aks
     - name: Verify Kubernetes connection
       run: |
         kubectl get nodes
