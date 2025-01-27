@@ -13,4 +13,5 @@ def index():
     return jsonify({"message": "Welcome to the Flask eCommerce Platform!"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
