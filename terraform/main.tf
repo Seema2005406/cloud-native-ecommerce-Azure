@@ -1,8 +1,8 @@
 provider "azurerm" {
-  subscription_id = "0a1030be-cebb-4bfa-a87d-adf07e07e38c"
   features {}
-}
 
+  subscription_id = "0a1030be-cebb-4bfa-a87d-adf07e07e38c"
+}
 
 resource "azurerm_resource_group" "rg" {
   name     = "flask-ecommerce-rg"
@@ -26,7 +26,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks.kube_config_raw
-  sensitive = true
+resource "azurerm_container_registry" "acr" {
+  name                = "flaskecommerceacr"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "Basic"
+  admin_enabled       = true
 }
