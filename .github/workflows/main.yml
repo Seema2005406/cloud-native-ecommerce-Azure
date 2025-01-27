@@ -48,10 +48,19 @@ jobs:
     - name: Set up Kubernetes context
       run: |
         az aks get-credentials --resource-group flask-ecommerce-rg --name flask-ecommerce-aks
+
+    - name: Create image pull secret
+      run: |
+        kubectl create secret docker-registry acr-secret \
+          --docker-server=${{ secrets.ACR_LOGIN_SERVER }} \
+          --docker-username=${{ secrets.ACR_USERNAME }} \
+          --docker-password=${{ secrets.ACR_PASSWORD }} \
+          --docker-email=${{ secrets.ACR_EMAIL }}
+
     - name: Verify Kubernetes connection
       run: |
         kubectl get nodes
 
     - name: Deploy to AKS with Helm
       run: |
-        helm upgrade --install flask-ecommerce helm_chart/
+        helm upgrade --install flask-ecommerce helm_chart/ --values helm_chart/values.yaml
